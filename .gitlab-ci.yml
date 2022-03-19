@@ -6,3 +6,4 @@ build-services:
   parallel:
     matrix:
       - BASE_IMAGE: [ "alpine", "alpine:3.12" ]
+        BUILD_ARGS: "MODULE=sml2mqtt"
