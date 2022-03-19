@@ -1,0 +1,49 @@
+logging:
+  level: INFO         # Log level
+  file: /dev/stdout   # Log file path (absolute or relative to config file)
+mqtt:
+  connection:
+    client id: sml2mqtt
+    host: broker-host
+    port: 1883
+    user: ''
+    password: ''
+    tls: false
+    tls insecure: false
+  base:
+    topic: sml2mqtt
+    qos: 0
+    retain: false
+  last will:
+    topic: status
+general:
+  Wh in kWh: true       # Automatically convert Wh to kWh
+  republish after: 120  # Republish automatically after this time (if no other filter configured)
+ports:
+- url: /dev/ttyUSB0
+  timeout: 3
+devices:   # Device configuration by ID or url
+  0123456789abcdef0123:
+    mqtt:
+      topic: power_meter
+    status:
+      topic: status
+    skip:
+    - 0100010801ff
+    - 0100020801ff
+    values:
+      0100010800ff:                     # 1.8.0   Positive active energy (A+) total [kWh]
+        mqtt:
+          topic: total_energy_import
+      0100010801ff:                     # 1.8.1   Positive active energy (A+) in tariff T1 [kWh]
+        mqtt:
+          topic: t1_energy_import
+      0100020800ff:                     # 2.8.0   Negative active energy (A+) total [kWh]
+        mqtt:
+          topic: total_energy_export
+      0100020801ff:                     # 2.8.1   Negative active energy (A+) in tariff T1 [kWh]
+        mqtt:
+          topic: t1_energy_export
+      0100100700ff:                     # 16.7.0  Sum active instantaneous power (A+ - A-) [kW]
+        mqtt:
+          topic: power

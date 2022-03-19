@@ -1,0 +1,25 @@
+include:
+  remote: "https://github.com/git-developer/docker-support/raw/v3.2.0/gitlab-ci/docker-template.yml"
+
+variables:
+  IMAGE_PLATFORMS: linux/amd64,linux/i386,linux/arm64,linux/arm/v7,linux/arm/v6
+  UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
+  DOWNSTREAM_REF: 'master'
+
+read_application_tags:
+  extends: .docker_support:.with_bare_image
+  stage: post_build
+  artifacts:
+    paths:
+    - tags
+    - labels
+  script:
+  - set -euo pipefail
+  - run() { docker run --rm "${IMAGE_NAME}:${BUILD_CACHE}" sh -c "${@}"; }
+
+  - APP_VERSION="$(run 'cat .app-version')"
+  - if run 'cat /etc/os-release | grep -qF "Alpine Linux v3.12"'; then APP_VERSION="legacy-${APP_VERSION}"; fi
+  - mkdir -p tags
+  - echo >tags/app_version "${IMAGE_NAME}:${APP_VERSION}"
+  - mkdir -p labels
+  - echo >labels/org.opencontainers.image.version "org.opencontainers.image.version=${APP_VERSION}"
