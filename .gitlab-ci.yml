@@ -5,6 +5,5 @@ build-services:
       pipeline_variables: true
   parallel:
     matrix:
-      - BUILD_ARGS: "BASE_IMAGE=alpine:3.12 MODULE=sml2mqtt"
-      - BUILD_ARGS: "BASE_IMAGE=alpine:3.12 MODULE=git+https://github.com/spacemanspiff2007/sml2mqtt.git@c981d1b"
-      - BUILD_ARGS: "BASE_IMAGE=alpine:3.12"
+      - BASE_IMAGE: [ "alpine", "alpine:3.12" ]
+        BUILD_ARGS: "BASE_IMAGE"
