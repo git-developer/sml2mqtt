@@ -18,7 +18,7 @@ read_application_tags:
   - run() { docker run --rm "${IMAGE_NAME}:${BUILD_CACHE}" sh -c "${@}"; }
 
   - APP_VERSION="$(run 'cat .app-version')"
-  - test "${BASE_IMAGE}" = 'alpine:3.12' || APP_VERSION="legacy-${APP_VERSION}"
+  - if run 'cat /etc/os-release | grep -qF "Alpine Linux v3.12"'; then APP_VERSION="legacy-${APP_VERSION}"; fi
   - mkdir -p tags
   - echo >tags/app_version "${IMAGE_NAME}:${APP_VERSION}"
   - mkdir -p labels
