@@ -1,0 +1,6 @@
+build-services:
+  trigger:
+    include: .build.yml
+  parallel:
+    matrix:
+      - BASE_IMAGE: [ "alpine", "alpine:3.12" ]
