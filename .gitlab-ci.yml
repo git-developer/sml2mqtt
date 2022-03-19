@@ -6,4 +6,3 @@ build-services:
   parallel:
     matrix:
       - BASE_IMAGE: [ "alpine", "alpine:3.12" ]
-        BUILD_ARGS: "MODULE=git+https://github.com/spacemanspiff2007/sml2mqtt.git@c981d1b"
