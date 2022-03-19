@@ -1,6 +1,8 @@
 build-services:
   trigger:
     include: .build.yml
+    forward:
+      pipeline_variables: true
   parallel:
     matrix:
       - BASE_IMAGE: [ "alpine", "alpine:3.12" ]
