@@ -1,4 +1,22 @@
-build-services:
+include:
+  remote: "https://github.com/git-developer/docker-support/raw/v3.2.0/gitlab-ci/docker-support.yml"
+
+variables:
+  UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
+  DOWNSTREAM_REF: 'master'
+
+stages:
+- post_checkout
+
+trigger_on_update:
+  extends: .docker_support:.trigger_on_update
+  stage: post_checkout
+  dependencies: []
+
+run_matrix_build:
+  rules:
+  - if: '$PIPELINE_MODE == "build"'
+  stage: post_checkout
   trigger:
     include: .build.yml
     forward:
