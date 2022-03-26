@@ -4,6 +4,7 @@ include:
 variables:
   UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
   DOWNSTREAM_REF: 'master'
+  BUILD_CONTEXT:  'image'
 
 stages:
 - post_checkout
@@ -23,5 +24,6 @@ run_matrix_build:
       pipeline_variables: true
   parallel:
     matrix:
-      - BASE_IMAGE: [ "alpine", "alpine:3.12" ]
-        BUILD_ARGS: "BASE_IMAGE"
+      - BASE_IMAGE:    [ "alpine", "alpine:3.12" ]
+        BUILD_ARGS:    "BASE_IMAGE"
+        BUILD_CONTEXT: "image"
