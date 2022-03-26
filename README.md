@@ -63,7 +63,7 @@ The file `image/Dockerfile` contains everything to build a docker image for sml2
 The optional build argument `MODULE` may be used to customize the version of the sml2mqtt module to build. Examples:
 * When you omit the build argument `MODULE`, the image is built from the latest commit of the `master` branch in the [sml2mqtt git repository](https://github.com/spacemanspiff2007/sml2mqtt).
 * `MODULE=sml2mqtt` uses the latest release from pypi, the python package index.
-* `MODULE=sml2mqtt=0.5` uses the sml2mqtt module from pypi in version `0.5 `.
+* `MODULE=sml2mqtt==0.5` uses the sml2mqtt module from pypi in version `0.5 `.
 * `MODULE=git+https://github.com/spacemanspiff2007/sml2mqtt.git@0.5` uses git tag `0.5` from the git repository.
 * `MODULE=git+https://github.com/spacemanspiff2007/sml2mqtt.git@c981d1b` uses git commit `c981d1b4` from the git repository.
 
