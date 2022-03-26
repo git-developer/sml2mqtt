@@ -19,7 +19,10 @@ read_application_tags:
 
   - APP_VERSION="$(run 'cat .app-version')"
   - if run 'cat /etc/os-release | grep -qF "Alpine Linux v3.12"'; then APP_VERSION="legacy-${APP_VERSION}"; fi
+  - BUILD_ID="$(date -u +%Y%m%d_%H%M%S)-${IMAGE_REVISION:-${CI_COMMIT_SHORT_SHA}}-$(od -An -N5 -tu4 </dev/urandom | tr -d ' ' | head -c8)"
+
   - mkdir -p tags
   - echo >tags/app_version "${IMAGE_NAME}:${APP_VERSION}"
+  - echo >tags/build_id "${IMAGE_NAME}:b${BUILD_ID}"
   - mkdir -p labels
   - echo >labels/org.opencontainers.image.version "org.opencontainers.image.version=${APP_VERSION}"
