@@ -1,23 +1,11 @@
 include:
-  remote: "https://github.com/git-developer/docker-support/raw/v3.2.0/gitlab-ci/docker-support.yml"
+  remote: "https://github.com/git-developer/docker-support/raw/v3.2.0/gitlab-ci/docker-template.yml"
 
 variables:
   UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
   DOWNSTREAM_REF: 'master'
-  BUILD_CONTEXT:  'image'
 
-stages:
-- post_checkout
-
-trigger_on_update:
-  extends: .docker_support:.trigger_on_update
-  stage: post_checkout
-  dependencies: []
-
-run_matrix_build:
-  rules:
-  - if: '$PIPELINE_MODE == "build"'
-  stage: post_checkout
+build_image:
   trigger:
     include: .build.yml
     forward:
@@ -26,6 +14,7 @@ run_matrix_build:
     matrix:
       - BASE_IMAGE:      [ "alpine", "alpine:3.12" ]
         BUILD_ARGS:      "BASE_IMAGE"
-        BUILD_CONTEXT:   "image"
-        IMAGE_PLATFORMS: "linux/amd64,linux/i386,linux/arm64,linux/arm/v7,linux/arm/v6"
 
+publish_image:
+  rules:
+  - when: never
