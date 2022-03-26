@@ -5,7 +5,8 @@ variables:
   UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
   DOWNSTREAM_REF: 'master'
 
-build_image:
+matrix_build:
+  stage: post_checkout
   trigger:
     include: .build.yml
     forward:
@@ -14,6 +15,10 @@ build_image:
     matrix:
       - BASE_IMAGE:      [ "alpine", "alpine:3.12" ]
         BUILD_ARGS:      "BASE_IMAGE"
+
+build_image:
+  rules:
+  - when: never
 
 publish_image:
   rules:
