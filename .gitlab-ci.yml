@@ -24,6 +24,8 @@ run_matrix_build:
       pipeline_variables: true
   parallel:
     matrix:
-      - BASE_IMAGE:    [ "alpine", "alpine:3.12" ]
-        BUILD_ARGS:    "BASE_IMAGE"
-        BUILD_CONTEXT: "image"
+      - BASE_IMAGE:      [ "alpine", "alpine:3.12" ]
+        BUILD_ARGS:      "BASE_IMAGE"
+        BUILD_CONTEXT:   "image"
+        IMAGE_PLATFORMS: "linux/amd64,linux/i386,linux/arm64,linux/arm/v7,linux/arm/v6"
+
