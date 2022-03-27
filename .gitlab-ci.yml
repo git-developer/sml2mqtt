@@ -1,4 +1,6 @@
 run_matrix_build:
+  variables:
+    PIPELINE_MODE: "build"
   trigger:
     include: .build.yml
     forward:
