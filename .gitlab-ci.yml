@@ -1,6 +1,7 @@
+include:
+  remote: "https://github.com/git-developer/docker-support/raw/v3.2.0/gitlab-ci/docker-support.yml"
+
 run_matrix_build:
-  variables:
-    PIPELINE_MODE: "build"
   trigger:
     include: .build.yml
     forward:
