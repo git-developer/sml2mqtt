@@ -1,13 +1,14 @@
+variables:
+  PIPELINE_MODE: "build"
+
 run_matrix_build:
   stage: build
-  variables:
-    PIPELINE_MODE: "build"
   trigger:
     include: .build.yml
     forward:
       pipeline_variables: true
   parallel:
     matrix:
-      - BASE_IMAGE:    [ "alpine", "alpine:3.12" ]
-        BUILD_ARGS:    "BASE_IMAGE"
-        PIPELINE_MODE: "$PIPELINE_MODE"
+      - BASE_IMAGE:      [ "alpine", "alpine:3.12" ]
+        BUILD_ARGS:      "BASE_IMAGE"
+        PIPELINE_MODE:   "$PIPELINE_MODE"
