@@ -1,5 +1,4 @@
 run_matrix_build:
-  extends: .docker_support:.build_job
   trigger:
     include: .build.yml
     forward:
