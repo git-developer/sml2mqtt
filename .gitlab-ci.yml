@@ -1,5 +1,5 @@
 run_matrix_build:
-  stage: post_checkout
+  stage: build
   variables:
     PIPELINE_MODE: "build"
   trigger:
