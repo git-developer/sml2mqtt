@@ -3,7 +3,6 @@ include:
 
 variables:
   UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
-  DOWNSTREAM_REF: 'master'
 
 stages:
 - post_checkout

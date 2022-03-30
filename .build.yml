@@ -4,7 +4,6 @@ include:
 variables:
   IMAGE_PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
   UPDATE_CHECK_URLS: 'https://github.com/spacemanspiff2007/sml2mqtt.git'
-  DOWNSTREAM_REF: 'master'
 
 read_application_tags:
   extends: .docker_support:.with_bare_image
